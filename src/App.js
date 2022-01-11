@@ -6,9 +6,8 @@ import './index.css';
 import User from './components/User';
 
 class App extends React.Component {
-  // Hold both the current user, user and follower state within the App.js component.
   state = {
-    user: '',
+    user: {},
     followers: [],
     search: '',
   }
@@ -35,10 +34,11 @@ class App extends React.Component {
   }
 
   // Load the current user's followers into state when the current user state is updated.
-  componentDidUpdate() {
+  componentDidUpdate(prevState) {
     // console.log('App: updated')
     const username = this.state.user.login;
-    axios.get(`https://api.github.com/users/${username}/followers`)
+    if(prevState.user !== this.state.user) {
+      axios.get(`https://api.github.com/users/${username}/followers`)
       .then(resp => {
         this.setState({
           ...this.state,
@@ -46,6 +46,7 @@ class App extends React.Component {
         })
       })
       .catch(err => console.error(err));
+    }
   }
 
   // Build function to handle the input field
