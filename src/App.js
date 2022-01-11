@@ -20,13 +20,29 @@ class App extends React.Component {
           ...this.state,
           user: resp.data,
         })
+        axios.get(`${resp.data.followers_url}`)
+          .then(resp => {
+            this.setState({
+              ...this.state,
+              followers: resp.data,
+            })
+          })
+          .catch(err => console.error(err));
       })
       .catch(err => console.error(err));
   }
 
   // Load the current user's followers into state when the current user state is updated.
   componentDidUpdate() {
-    console.log(this.state.user);
+    const username = this.state.user.login;
+    axios.get(`https://api.github.com/users/${username}/followers`)
+      .then(resp => {
+        this.setState({
+          ...this.state,
+          followers: resp.data,
+        })
+      })
+      .catch(err => console.error(err));
   }
 
   // Build function to handle the input field
@@ -39,18 +55,13 @@ class App extends React.Component {
 
   // Load the the user and follower information of the username typed into a form when submitted.
   handleSearch = (event) => {
-    // Prevent default
     event.preventDefault();
-    // Store search input
     const username = this.state.search;
-    // Fetch user object
     axios.get(`https://api.github.com/users/${username}`)
       .then(resp => {
         this.setState({
           ...this.state,
-          // Set user to the searched user
           user: resp.data,
-          // Reset search value
           search: event.target.reset(),
         })
       })
@@ -65,7 +76,7 @@ class App extends React.Component {
           <input onChange={this.handleChange}></input>
           <button>Search</button>
         </form>
-        <User user={this.state.user}/>
+        <User user={this.state.user} followers={this.state.followers}/>
         <FollowerList />
       </div>
     );
