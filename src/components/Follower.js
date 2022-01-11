@@ -1,4 +1,5 @@
 import React from 'react';
+import '../index.css';
 
 class Follower extends React.Component {
 	componentDidMount() {
@@ -9,7 +10,12 @@ class Follower extends React.Component {
 		// console.log('Follower: rendered');
 		return(
 			<div>
-				<p>{this.props.user.login}</p>
+				<div className='followerCard'>
+					<div className='followerInfo'>
+						<img src={this.props.user.avatar_url} className='userAvatar'/>
+						<h4>{this.props.user.login}</h4>
+					</div>
+				</div>
 			</div>
 		);
 	}

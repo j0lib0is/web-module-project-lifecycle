@@ -75,12 +75,14 @@ class App extends React.Component {
     // console.log('App: rendered');
     return(
       <div>
-        <h1>Github Info</h1>
-        <form onSubmit={this.handleSearch}>
-          <input onChange={this.handleChange}></input>
-          <button>Search</button>
-        </form>
-        <User user={this.state.user} followers={this.state.followers}/>
+        <div className='container'>
+          <h1>Github Info</h1>
+          <form className='searchForm' onSubmit={this.handleSearch}>
+            <input onChange={this.handleChange}></input>
+            <button>Search</button>
+          </form>
+          <User user={this.state.user} followers={this.state.followers}/>
+        </div>
       </div>
     );
   }

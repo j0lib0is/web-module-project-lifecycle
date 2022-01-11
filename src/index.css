@@ -11,3 +11,69 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 		monospace;
 }
+
+.container {
+	max-width: 720px;
+	margin: 0 auto;
+}
+
+.searchForm {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	margin-bottom: 24px;
+}
+
+input {
+	border: 1px solid lightgray;
+	border-radius: 8px;
+	max-height: 32px;
+	padding: 8px;
+	margin-right: 8px;
+}
+
+button {
+	border: none;
+	border-radius: 8px;
+	max-height: 32px;
+	padding: 8px 24px;
+	background-color: black;
+	color: white;
+	cursor: pointer;
+}
+button:hover {
+	background-color: darkgray;
+}
+
+.userCard {
+	box-shadow: 4px 4px 24px rgba(0, 0, 0, 0.08);
+	border-radius: 16px;
+	padding: 24px;
+	display: flex;
+	align-items: center;
+}
+
+.userAvatar {
+	border-radius: 8px;
+	border: 1px solid lightgray;
+	width: 150px;
+	height: 150px;
+	margin-right: 16px;
+}
+
+.followersList {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.followerCard {
+	padding: 16px;
+	max-width: 150px;
+	text-align: center;
+}
+
+.followerInfo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
