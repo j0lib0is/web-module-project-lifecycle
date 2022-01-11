@@ -1,10 +1,15 @@
 import React from 'react';
 
 class Follower extends React.Component {
+	componentDidMount() {
+		// console.log('Follower: mounted');
+	}
+
 	render() {
+		// console.log('Follower: rendered');
 		return(
 			<div>
-				<h1>Follower Card</h1>
+				<p>{this.props.user.login}</p>
 			</div>
 		);
 	}

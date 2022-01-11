@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
+import './index.css';
+
 import User from './components/User';
-import FollowerList from './components/FollowerList';
 
 class App extends React.Component {
   // Hold both the current user, user and follower state within the App.js component.
@@ -14,6 +15,7 @@ class App extends React.Component {
 
   // Load the current user state into the user state on mount.
   componentDidMount() {
+    // console.log('App: mounted');
     axios.get('https://api.github.com/users/brianlovin')
       .then(resp => {
         this.setState({
@@ -34,6 +36,7 @@ class App extends React.Component {
 
   // Load the current user's followers into state when the current user state is updated.
   componentDidUpdate() {
+    // console.log('App: updated')
     const username = this.state.user.login;
     axios.get(`https://api.github.com/users/${username}/followers`)
       .then(resp => {
@@ -69,6 +72,7 @@ class App extends React.Component {
   }
 
   render() {
+    // console.log('App: rendered');
     return(
       <div>
         <h1>Github Info</h1>
@@ -77,7 +81,6 @@ class App extends React.Component {
           <button>Search</button>
         </form>
         <User user={this.state.user} followers={this.state.followers}/>
-        <FollowerList />
       </div>
     );
   }

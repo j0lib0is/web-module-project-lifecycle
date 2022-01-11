@@ -1,13 +1,20 @@
 import React from 'react';
 
-// import Follower from './components/Follower';
+import Follower from './Follower';
 
 class FollowersList extends React.Component {
+	componentDidMount() {
+		// console.log('FollowerList: mounted');
+	}
+
 	render() {
+		// console.log('FollowerList: rendered');
 		return(
 			<div>
 				<h1>Followers</h1>
-				{/* map over list of followers and return the Follower component for each */}
+				{this.props.followers.map((user) => (
+					<Follower user={user} key={user.id} />
+				))}
 			</div>
 		);
 	}
